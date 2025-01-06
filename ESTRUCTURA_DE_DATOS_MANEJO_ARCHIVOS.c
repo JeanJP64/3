@@ -1,3 +1,9 @@
+/*Propuesta de Ejercicio
+
+-	Utilice una estructura para almacenar información de estudiantes (por ejemplo, nombre, edad, calificación).
+-	Administre una lista de estudiantes, permitiendo agregar, listar y buscar estudiantes.
+-	Guarde los datos en un archivo y pueda cargarlos nuevamente al iniciar el programa.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,7 +18,7 @@ typedef struct {
 
 void agregarEstudiante(Estudiante estudiantes[], int *conteo) {
     if (*conteo >= MAX_ESTUDIANTES) {
-        printf("L�mite de estudiantes alcanzado.\n");
+        printf("Límite de estudiantes alcanzado.\n");
         return;
     }
     printf("Ingrese el nombre: ");
