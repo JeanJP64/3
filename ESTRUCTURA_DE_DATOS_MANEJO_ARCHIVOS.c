@@ -1,5 +1,5 @@
-/*Propuesta de Ejercicio
-
+/* JEAN PERALTA
+Propuesta de Ejercicio
 -	Utilice una estructura para almacenar información de estudiantes (por ejemplo, nombre, edad, calificación).
 -	Administre una lista de estudiantes, permitiendo agregar, listar y buscar estudiantes.
 -	Guarde los datos en un archivo y pueda cargarlos nuevamente al iniciar el programa.*/
