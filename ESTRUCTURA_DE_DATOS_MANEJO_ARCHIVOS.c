@@ -280,3 +280,134 @@ public class CuentaBancaria {
     }
 }
 
+
+
+
+// Clase base Cuenta
+class Cuenta {
+    protected float saldo;
+    protected int numeroDepositos = 0;
+    protected int numeroRetiros = 0;
+    protected float tasaAnual;
+
+    public Cuenta(float saldoInicial, float tasaAnual) {
+        this.saldo = saldoInicial;
+        this.tasaAnual = tasaAnual;
+    }
+
+    public void depositar(float cantidad) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+            numeroDepositos++;
+            System.out.println("Depósito realizado.");
+        } else {
+            System.out.println("Cantidad inválida para depositar.");
+        }
+    }
+
+    public void retirar(float cantidad) {
+        if (cantidad > 0 && cantidad <= saldo) {
+            saldo -= cantidad;
+            numeroRetiros++;
+            System.out.println("Retiro realizado.");
+        } else {
+            System.out.println("Cantidad inválida o saldo insuficiente.");
+        }
+    }
+
+    public void imprimir() {
+        System.out.println("Saldo actual: $" + saldo);
+        System.out.println("Número de depósitos: " + numeroDepositos);
+        System.out.println("Número de retiros: " + numeroRetiros);
+        System.out.println("Tasa anual: " + tasaAnual + "%");
+    }
+}
+
+// Subclase CuentaDeAhorros
+class CuentaDeAhorros extends Cuenta {
+    private boolean activa;
+
+    public CuentaDeAhorros(float saldoInicial, float tasaAnual) {
+        super(saldoInicial, tasaAnual);
+        this.activa = saldoInicial >= 100;
+    }
+
+    @Override
+    public void depositar(float cantidad) {
+        if (!activa && (saldo + cantidad) >= 100) {
+            activa = true;
+            System.out.println("La cuenta ahora está activa.");
+        }
+        super.depositar(cantidad);
+    }
+
+    @Override
+    public void retirar(float cantidad) {
+        if (activa) {
+            super.retirar(cantidad);
+            if (saldo < 100) {
+                activa = false;
+                System.out.println("La cuenta ahora está inactiva.");
+            }
+        } else {
+            System.out.println("Cuenta inactiva. No se puede retirar.");
+        }
+    }
+
+    @Override
+    public void imprimir() {
+        super.imprimir();
+        System.out.println("Cuenta activa: " + activa);
+    }
+}
+
+
+
+
+
+import java.util.Scanner;
+
+public class BancoApp {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese saldo inicial: ");
+        float saldoInicial = sc.nextFloat();
+        System.out.print("Ingrese tasa anual (%): ");
+        float tasaAnual = sc.nextFloat();
+
+        CuentaDeAhorros cuenta = new CuentaDeAhorros(saldoInicial, tasaAnual);
+
+        int opcion;
+        do {
+            System.out.println("\n1. Depositar");
+            System.out.println("2. Retirar");
+            System.out.println("3. Imprimir estado");
+            System.out.println("4. Salir");
+            System.out.print("Elija una opción: ");
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Cantidad a depositar: ");
+                    float dep = sc.nextFloat();
+                    cuenta.depositar(dep);
+                    break;
+                case 2:
+                    System.out.print("Cantidad a retirar: ");
+                    float ret = sc.nextFloat();
+                    cuenta.retirar(ret);
+                    break;
+                case 3:
+                    cuenta.imprimir();
+                    break;
+                case 4:
+                    System.out.println("Saliendo del sistema.");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+            }
+
+        } while (opcion != 4);
+    }
+}
+
