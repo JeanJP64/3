@@ -99,3 +99,184 @@ int main() {
 ////////////////////////////////////////////////5///5555
 
 //AQUI COFRESIN
+import java.util.Scanner;
+
+public class CuentaBancaria {
+    private double saldo;
+    private double tasaInteresAnual;
+    private int numeroTransacciones;
+
+    public CuentaBancaria(double saldoInicial, double tasaInteresAnual) {
+        this.saldo = saldoInicial;
+        this.tasaInteresAnual = tasaInteresAnual;
+        this.numeroTransacciones = 0;
+    }
+
+    public void depositar(double cantidad) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+            numeroTransacciones++;
+            System.out.println("Depósito exitoso.");
+        } else {
+            System.out.println("Cantidad inválida.");
+        }
+    }
+
+    public void retirar(double cantidad) {
+        if (cantidad > 0 && cantidad <= saldo) {
+            saldo -= cantidad;
+            numeroTransacciones++;
+            System.out.println("Retiro exitoso.");
+        } else {
+            System.out.println("Cantidad inválida o saldo insuficiente.");
+        }
+    }
+
+    public void verSaldo() {
+        System.out.printf("Saldo actual: $%.2f\n", saldo);
+    }
+
+    public int getNumeroTransacciones() {
+        return numeroTransacciones;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese el saldo inicial: ");
+        double saldoInicial = scanner.nextDouble();
+        System.out.print("Ingrese la tasa de interés anual (%): ");
+        double tasaInteres = scanner.nextDouble();
+
+        CuentaBancaria cuenta = new CuentaBancaria(saldoInicial, tasaInteres);
+
+        int opcion;
+        do {
+            System.out.println("\n--- Menú ---");
+            System.out.println("1. Depositar");
+            System.out.println("2. Retirar");
+            System.out.println("3. Ver saldo");
+            System.out.println("4. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+
+            System.out.println("Número de transacciones: " + cuenta.getNumeroTransacciones());
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese cantidad a depositar: ");
+                    double deposito = scanner.nextDouble();
+                    cuenta.depositar(deposito);
+                    break;
+                case 2:
+                    System.out.print("Ingrese cantidad a retirar: ");
+                    double retiro = scanner.nextDouble();
+                    cuenta.retirar(retiro);
+                    break;
+                case 3:
+                    cuenta.verSaldo();
+                    break;
+                case 4:
+                    System.out.println("Saliendo del programa. ¡Gracias!");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+            }
+
+        } while (opcion != 4);
+
+        scanner.close();
+    }
+}
+
+
+
+
+import java.util.Scanner;
+
+public class CuentaBancaria {
+    private double saldo;
+    private double tasaInteresAnual;
+    private int numeroTransacciones;
+
+    public CuentaBancaria(double saldoInicial, double tasaInteresAnual) {
+        this.saldo = saldoInicial;
+        this.tasaInteresAnual = tasaInteresAnual;
+        this.numeroTransacciones = 0;
+    }
+
+    public void depositar(double cantidad) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+            numeroTransacciones++;
+            System.out.println("Depósito exitoso.");
+        } else {
+            System.out.println("Cantidad inválida.");
+        }
+    }
+
+    public void retirar(double cantidad) {
+        if (cantidad > 0 && cantidad <= saldo) {
+            saldo -= cantidad;
+            numeroTransacciones++;
+            System.out.println("Retiro exitoso.");
+        } else {
+            System.out.println("Cantidad inválida o saldo insuficiente.");
+        }
+    }
+
+    public void verSaldo() {
+        System.out.printf("Saldo actual: $%.2f\n", saldo);
+    }
+
+    public int getNumeroTransacciones() {
+        return numeroTransacciones;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese el saldo inicial: ");
+        double saldoInicial = scanner.nextDouble();
+        System.out.print("Ingrese la tasa de interés anual (%): ");
+        double tasaInteres = scanner.nextDouble();
+
+        CuentaBancaria cuenta = new CuentaBancaria(saldoInicial, tasaInteres);
+
+        int opcion;
+        do {
+            System.out.println("\n--- Menú ---");
+            System.out.println("1. Depositar");
+            System.out.println("2. Retirar");
+            System.out.println("3. Ver saldo");
+            System.out.println("4. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = scanner.nextInt();
+
+            System.out.println("Número de transacciones: " + cuenta.getNumeroTransacciones());
+
+            switch (opcion) {
+                case 1:
+                    System.out.print("Ingrese cantidad a depositar: ");
+                    double deposito = scanner.nextDouble();
+                    cuenta.depositar(deposito);
+                    break;
+                case 2:
+                    System.out.print("Ingrese cantidad a retirar: ");
+                    double retiro = scanner.nextDouble();
+                    cuenta.retirar(retiro);
+                    break;
+                case 3:
+                    cuenta.verSaldo();
+                    break;
+                case 4:
+                    System.out.println("Saliendo del programa. ¡Gracias!");
+                    break;
+                default:
+                    System.out.println("Opción inválida.");
+            }
+
+        } while (opcion != 4);
+
+        scanner.close();
+    }
+}
+
